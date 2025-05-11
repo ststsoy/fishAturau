@@ -1,0 +1,19 @@
+
+{% extends 'magazin/index.html'%}
+{% load static %}{%block vidio%}
+
+{% for v in video %}
+
+
+<div class="card" style="width: 100rem;">
+  <video src="{{v.video.url}}"poster="poster.gif" controls ></video>
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">{{v.content}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
+{% endfor %}
+
+{%endblock%}
