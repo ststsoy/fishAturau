@@ -1,0 +1,31 @@
+{% extends 'magazin/index.html'%}
+{% load static %}
+{% block reg %}
+<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="{% static 'magazin/images/BA.jpg' %}"
+            class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+            alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+<form class="needs-validation" method="post">
+ {% csrf_token %}
+
+ {% for f in form %}
+ <label  class="form-check-label" for="{{ f.id_for_label }}">{{f.label}}:</label>{{ f }}
+ <div class="form-error">{{ f.errors }}</div>
+{% endfor %}
+<button type="submit"  data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg mb-1">Регистрация</button>
+</form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{%endblock%}
+

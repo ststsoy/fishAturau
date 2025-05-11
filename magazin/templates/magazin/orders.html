@@ -1,0 +1,30 @@
+{%extends 'magazin/index.html'%}
+{% load static %}
+
+  {% block order %}   
+
+  {%for p in post%} 
+  <section class="h-100 h-custom" style="background-color: #d2c9ff;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <a href="{{p.id}}"><h4 >Заказ №:{{p.id}}</h4></a> <br>
+                <h4 >email:{{p.email}}</h4> <br>
+                <h4 >Адрес:{{p.adress}}</h4> <br>
+                <h4>Телефон:{{p.telephon}}</h4>  <br>
+                <h4>Статус доставки:{{p.statusdelivery}}</h4>
+              </div>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {%endfor%}   
+  {%endblock%}
+
+

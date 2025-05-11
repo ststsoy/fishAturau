@@ -1,0 +1,41 @@
+{% extends 'magazin/index.html'%}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+        {% block post %}
+	       {% for p in post %}
+        
+        
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">{{p.product}}</h4>
+             <img class=".bd-placeholder-img" width="150" height="151" src= "{{ p.photo.url }}"/>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">Цена:{{p.price}}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li></li>
+              <li>{{p.description}}</li>
+              <li>{{p.barcode}}</li>
+              <li></li>
+            </ul>
+           <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
+          </div>
+        </div>
+      </div>
+      
+            {% endfor %}
+
+            {%endblock%}
+    </div>
+
+
+</body>
+</html>

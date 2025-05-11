@@ -1,0 +1,140 @@
+{%extends 'magazin/index.html'%}
+{% load static %}
+{% block basket %}
+
+<section class="h-100 gradient-custom"  style="background-color: #8fc4b7;>
+<div class="container py-5">
+  <div class="row d-flex justify-content-center my-4">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-header py-3">
+          <span class="text-primary"> </span>
+          
+          <h5 class="mb-0">Корзина  <span class="badge bg-primary rounded-pill">{{total_quantity}}</span></h5>
+        </div>
+        <div class="card-body">
+          <!-- Single item -->
+          {% for b in basket %} 
+
+          <div class="row">
+            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+              <!-- Image -->
+              <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                <img src="{{ b.product.photo.url }}"
+                class="w-100" alt="Blue Jeans Jacket" />
+                <a href="#!">
+                  <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                </a>
+              </div>
+              <!-- Image -->
+            </div>
+
+            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+              <!-- Data -->
+
+
+              <a href="/magazin/get/{{b.product.id}}"><p><strong>{{b.product}}</strong></p></a>
+              
+              <!-- Data -->
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+              <!-- Quantity -->
+              <div class="d-flex mb-4" style="max-width: 300px">
+               <a href="/magazin/basket-deleted/{{b.id}}/"><button type="button" class="btn btn-primary"><span class="bi bi-trash"></span></button></a>
+
+               <div data-mdb-input-init class="form-outline">
+                <input  value="{{b.quantity}}" class="form-control" />
+                <label class="form-label" for="form1">Количество</label>
+              </div>
+
+              <a href="/magazin/addprodinb/{{b.product.id}}"><button type="button" class="btn btn-primary"><span class="bi bi-cart3"></span></button></a>
+            </div>
+            <!-- Quantity -->
+
+            <!-- Price -->
+            <p class="text-start text-md-center">
+              <strong>Цена:{{b.product.price}} тенге</strong>
+            </p>
+            <!-- Price -->
+          </div>
+        </div>
+        <!-- Single item -->
+
+        <hr class="my-4" />
+
+        {%endfor%}
+        <!-- Single item -->
+      </div>
+    </div>
+    <div class="card mb-4">
+      <div class="card-body">
+        <p><strong>Expected shipping delivery</strong></p>
+        <p class="mb-0">12.10.2020 - 14.10.2020</p>
+      </div>
+    </div>
+    <div class="card mb-4 mb-lg-0">
+      <div class="card-body">
+        <p><strong>We accept</strong></p>
+        <img class="me-2" width="45px"
+        src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+        alt="Visa" />
+        <img class="me-2" width="45px"
+        src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+        alt="American Express" />
+        <img class="me-2" width="45px"
+        src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+        alt="Mastercard" />
+        <img class="me-2" width="45px"
+        src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce/includes/gateways/paypal/assets/images/paypal.webp"
+        alt="PayPal acceptance mark" />
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card mb-4">
+      <div class="card-header py-3">
+        <h5 class="mb-0">Итого</h5>
+      </div>
+      <div class="card-body">
+        {%if total_sum <= 6000 %}
+        <ul class="list-group list-group-flush">          
+          <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+            <div>
+              <strong>Общая сумма</strong>
+            </div>
+            <span><strong>{{total_sum}}</strong></span>
+          </li>
+        </ul>
+        {%else%}
+        <ul class="list-group list-group-flush">
+         
+         <li class="list-group-item d-flex justify-content-between align-items-center px-0">Доставка
+          <span>Бесплатно</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+          <div>
+            <strong>Общая сумма</strong>
+
+          </div>
+          <span><strong>{{total_sum}}</strong></span>
+        </li>
+      </ul>
+      {% endif %}
+      {%if total_quantity == 0 %}
+      <h4 class="float-right">Корзина пуста</h4>
+      
+      {%else%}
+
+      <a href="/magazin/ord/addfrombasket"><button class="w-100 btn btn-primary btn-lg" type="submit">заказать</button></a>
+
+      <a href="/magazin/clear_baskets"><button class="w-100 btn btn-primary btn-lg" type="submit">очистить карзину</button></a>
+      
+      {% endif %}
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+{%endblock%}
